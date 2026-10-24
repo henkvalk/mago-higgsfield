@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Register skill in Base's ToolRegistry -->
+    <type name="MagoAssistant\Mago\Service\Tool\ToolRegistry">
+        <arguments>
+            <argument name="tools" xsi:type="array">
+                <item name="product_media" xsi:type="object">
+                    MagoAssistant\Higgsfield\Service\Skills\ProductMedia
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Wire actions -->
+    <type name="MagoAssistant\Higgsfield\Service\Skills\ProductMedia">
+        <arguments>
+            <argument name="actions" xsi:type="array">
+                <item name="generate_image" xsi:type="object">MagoAssistant\Higgsfield\Service\Skills\ProductMedia\GenerateImageAction</item>
+                <item name="generate_video" xsi:type="object">MagoAssistant\Higgsfield\Service\Skills\ProductMedia\GenerateVideoAction</item>
+                <item name="check_status" xsi:type="object">MagoAssistant\Higgsfield\Service\Skills\ProductMedia\CheckStatusAction</item>
+                <item name="attach_image" xsi:type="object">MagoAssistant\Higgsfield\Service\Skills\ProductMedia\AttachImageAction</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- HTTP clients -->
+    <type name="MagoAssistant\Higgsfield\Service\Client\OAuthService">
+        <arguments>
+            <argument name="httpClient" xsi:type="object">GuzzleHttp\Client</argument>
+        </arguments>
+    </type>
+    <type name="MagoAssistant\Higgsfield\Service\Client\McpClient">
+        <arguments>
+            <argument name="httpClient" xsi:type="object">GuzzleHttp\Client</argument>
+        </arguments>
+    </type>
+    <type name="MagoAssistant\Higgsfield\Service\Skills\ProductMedia\HiggsfieldMedia">
+        <arguments>
+            <argument name="httpClient" xsi:type="object">GuzzleHttp\Client</argument>
+        </arguments>
+    </type>
+
+</config>
