@@ -107,7 +107,7 @@ class CheckStatusAction implements ActionInterface
             ];
         }
 
-        $urls = (array)$result['urls'];
+        $urls = array_values(array_filter((array)$result['urls'], 'is_string'));
         if ($urls === []) {
             return ['error' => 'Higgsfield reports the request as completed but returned no files.'];
         }
